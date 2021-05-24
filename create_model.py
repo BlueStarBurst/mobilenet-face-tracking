@@ -428,10 +428,11 @@ print("=======================================")
 model.compile(loss=smoothL1, optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3), metrics=['mape'])
 print(model.summary())
 # checkpoint
-filepath="./mobilenet_checkpoints/smooth_L1-{epoch:02d}-{val_mean_absolute_percentage_error:.5f}.hdf5"
+
+filepath="./mobilenet_checkpoints/smooth_L1-{epoch:02d}-{val_mape:.5f}.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=True, mode='min')
 callbacks_list = [checkpoint]
-history = model.fit(X_train, y_train, batch_size=64, epochs=10000, shuffle=True,\
+history = model.fit(X_train, y_train, batch_size=64, epochs=5, shuffle=True,\
                     verbose=1, validation_data=(X_test, y_test), callbacks=callbacks_list)
 
 # Save model
@@ -439,4 +440,3 @@ model.save("./model/face_landmark_dnn.h5")
 print("=======================================")
 print("Save Final Model")
 print("=======================================")
-print("hi")
