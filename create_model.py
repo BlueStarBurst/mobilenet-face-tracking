@@ -432,7 +432,7 @@ print(model.summary())
 filepath="./mobilenet_checkpoints/smooth_L1-{epoch:02d}-{val_mape:.5f}.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=True, mode='min')
 callbacks_list = [checkpoint]
-history = model.fit(X_train, y_train, batch_size=64, epochs=5, shuffle=True,\
+history = model.fit(X_train, y_train, batch_size=64, epochs=50, shuffle=True,\
                     verbose=1, validation_data=(X_test, y_test), callbacks=callbacks_list)
 
 # Save model

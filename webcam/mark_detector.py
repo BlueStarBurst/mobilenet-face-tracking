@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
-from keras.models import load_model
-from keras.utils.generic_utils import custom_object_scope
+from tensorflow.keras.models import load_model
+from tensorflow.keras.utils import custom_object_scope
 
 from utils import smoothL1, relu6, DepthwiseConv2D, mask_weights
 import cv2
@@ -12,7 +12,7 @@ sys.path.append("../")
 # Model File Path #
 # test #
 #current_model = "landmark_model/Mobilenet_v1.hdf5"
-current_model = "landmark_model/Mobilenet_v1.hdf5"
+current_model = "landmark_model/face_landmark_dnn.h5"
 
 class MarkDetector:
     """Facial landmark detector by Convolutional Neural Network"""
