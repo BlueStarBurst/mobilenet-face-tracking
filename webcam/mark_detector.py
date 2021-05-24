@@ -11,6 +11,7 @@ sys.path.append("../")
 
 # Model File Path #
 # test #
+#current_model = "landmark_model/Mobilenet_v1.hdf5"
 current_model = "landmark_model/Mobilenet_v1.hdf5"
 
 class MarkDetector:
@@ -152,12 +153,13 @@ class MarkDetector:
             cv2.circle(image, (int(mark[0]), int(
                 mark[1])), thick, color, -1, cv2.LINE_AA)
 
+from os.path import dirname, join
 class FaceDetector:
     """Detect human face from image"""
 
     def __init__(self,
-                 dnn_proto_text='../assets/deploy.prototxt',
-                 dnn_model='../assets/res10_300x300_ssd_iter_140000.caffemodel'):
+                 dnn_proto_text= join(dirname(__file__), '../assets/deploy.prototxt'),
+                 dnn_model=join(dirname(__file__), '../assets/res10_300x300_ssd_iter_140000.caffemodel')):
         """Initialization"""
         self.face_net = cv2.dnn.readNetFromCaffe(dnn_proto_text, dnn_model)
         self.detection_result = None
